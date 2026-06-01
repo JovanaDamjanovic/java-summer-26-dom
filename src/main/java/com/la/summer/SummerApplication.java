@@ -1,0 +1,15 @@
+package com.la.summer;
+
+import com.la.summer.demo.Item;
+import com.la.summer.demo.Store;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SummerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SummerApplication.class, args);
+	}
+
+}
