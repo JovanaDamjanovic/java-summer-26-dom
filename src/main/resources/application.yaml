@@ -1,3 +1,16 @@
 spring:
   application:
     name: JAVA course - summer 26
+  profiles:
+    active: default
+
+server:
+  port: 8080
+
+fakestore:
+  url: https://fakestoreapi.com/
+  username: sradenovic
+  api-key: dasdfasdada13912312-aas2
+  auth: true
+  ssl:
+    active: true

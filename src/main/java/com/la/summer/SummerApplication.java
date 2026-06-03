@@ -1,15 +1,17 @@
 package com.la.summer;
 
-import com.la.summer.demo.Item;
-import com.la.summer.demo.Store;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class SummerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SummerApplication.class, args);
+
+		ApplicationContext applicationContext = SpringApplication.run(SummerApplication.class, args);
+//		applicationContext.getBean("janko");
+//		applicationContext.getBean(Store.class);
 	}
 
 }
