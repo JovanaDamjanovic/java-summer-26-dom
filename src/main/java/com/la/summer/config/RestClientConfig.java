@@ -12,17 +12,11 @@ public class RestClientConfig {
     @Autowired
     private ExternalApiConfig externalApiConfig;
 
-//    @Bean
-//    public RestClient restClient(RestClient.Builder builder) {
-//        return builder
-//                .baseUrl("https://fakestoreapi.com/products")
-//                .build();
-//    }
-
     @Bean
     public RestClient restClient() {
-        String baseUrl = externalApiConfig.getUrl();
-       return RestClient.create(baseUrl);
+        return RestClient.builder()
+                .baseUrl(externalApiConfig.getUrl())
+                .build();
     }
 
 }

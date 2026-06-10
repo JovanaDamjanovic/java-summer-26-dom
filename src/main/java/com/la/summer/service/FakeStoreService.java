@@ -67,7 +67,7 @@ public class FakeStoreService {
 
     public FakeStoreProductDto getProductByIdBean(Integer id) {
         return restClient.get()
-                .uri("/product/{id}", id)
+                .uri("/products/{id}", id)
                 .retrieve()
                 .body(FakeStoreProductDto.class);
     }
