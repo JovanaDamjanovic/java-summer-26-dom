@@ -14,3 +14,9 @@ fakestore:
   auth: true
   ssl:
     active: true
+
+domaci:
+  ime: Jovana
+  grupa: java-summer-26
+  zadatak: domaci1
+  predmet: Java
