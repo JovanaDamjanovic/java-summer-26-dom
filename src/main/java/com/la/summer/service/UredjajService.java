@@ -2,45 +2,47 @@ package com.la.summer.service;
 
 import com.la.summer.model.Uredjaj;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.client.RestClient;
 
 @Service
 public class UredjajService {
 
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestClient restClient = RestClient.create("https://api.restful-api.dev/objects");
 
-    private final String BASE_URL = "https://api.restful-api.dev/objects";
-
-    public Object vratiSveUredjaje() {
-        return restTemplate.getForObject(BASE_URL, Object.class);
+    public Uredjaj[] vratiSveUredjaje() {
+        return restClient.get()
+                .retrieve()
+                .body(Uredjaj[].class);
     }
 
-    public Object vratiUredjajPoId(String id) {
-        return restTemplate.getForObject(BASE_URL + "/" + id, Object.class);
+    public Uredjaj vratiUredjajPoId(String id) {
+        return restClient.get()
+                .uri("/{id}", id)
+                .retrieve()
+                .body(Uredjaj.class);
     }
 
-    public Object dodajUredjaj(Uredjaj uredjaj) {
-        Map<String, Object> request = new HashMap<>();
-        request.put("name", uredjaj.getNaziv());
-        request.put("data", uredjaj.getPodaci());
-
-        return restTemplate.postForObject(BASE_URL, request, Object.class);
+    public Uredjaj dodajUredjaj(Uredjaj uredjaj) {
+        return restClient.post()
+                .body(uredjaj)
+                .retrieve()
+                .body(Uredjaj.class);
     }
 
-    public Object izmijeniUredjaj(String id, Uredjaj uredjaj) {
-        Map<String, Object> request = new HashMap<>();
-        request.put("name", uredjaj.getNaziv());
-        request.put("data", uredjaj.getPodaci());
-
-        restTemplate.put(BASE_URL + "/" + id, request);
-        return "Uredjaj je izmijenjen";
+    public Uredjaj izmijeniUredjaj(String id, Uredjaj uredjaj) {
+        return restClient.put()
+                .uri("/{id}", id)
+                .body(uredjaj)
+                .retrieve()
+                .body(Uredjaj.class);
     }
 
-    public Object obrisiUredjaj(String id) {
-        restTemplate.delete(BASE_URL + "/" + id);
+    public String obrisiUredjaj(String id) {
+        restClient.delete()
+                .uri("/{id}", id)
+                .retrieve()
+                .toBodilessEntity();
+
         return "Uredjaj je obrisan";
     }
 }
